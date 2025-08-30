@@ -1,0 +1,855 @@
+{
+	"info": {
+		"_postman_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+		"name": "A. Ali Murtaza Store API",
+		"description": "Complete API collection for A. Ali Murtaza Store - Products and Stock Management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12345678"
+	},
+	"item": [
+		{
+			"name": "Health & Documentation",
+			"item": [
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/health",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "API Documentation",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Get All Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/products?page=1&limit=20&sort=createdAt&order=desc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"products"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"description": "Page number"
+								},
+								{
+									"key": "limit",
+									"value": "20",
+									"description": "Items per page"
+								},
+								{
+									"key": "sort",
+									"value": "createdAt",
+									"description": "Sort field"
+								},
+								{
+									"key": "order",
+									"value": "desc",
+									"description": "Sort order (asc/desc)"
+								},
+								{
+									"key": "gender",
+									"value": "men",
+									"description": "Filter by gender (men/women/kids/baby)",
+									"disabled": true
+								},
+								{
+									"key": "category",
+									"value": "shirts",
+									"description": "Filter by category",
+									"disabled": true
+								},
+								{
+									"key": "minPrice",
+									"value": "100",
+									"description": "Minimum price",
+									"disabled": true
+								},
+								{
+									"key": "maxPrice",
+									"value": "1000",
+									"description": "Maximum price",
+									"disabled": true
+								},
+								{
+									"key": "inStock",
+									"value": "true",
+									"description": "Filter in stock items",
+									"disabled": true
+								},
+								{
+									"key": "featured",
+									"value": "true",
+									"description": "Filter featured items",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "shirt",
+									"description": "Search term",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Products by Gender",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/products/gender/men?page=1&limit=20&sort=createdAt&order=desc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"gender",
+								"men"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"description": "Page number"
+								},
+								{
+									"key": "limit",
+									"value": "20",
+									"description": "Items per page"
+								},
+								{
+									"key": "sort",
+									"value": "createdAt",
+									"description": "Sort field"
+								},
+								{
+									"key": "order",
+									"value": "desc",
+									"description": "Sort order (asc/desc)"
+								},
+								{
+									"key": "category",
+									"value": "shirts",
+									"description": "Filter by category",
+									"disabled": true
+								},
+								{
+									"key": "minPrice",
+									"value": "100",
+									"description": "Minimum price",
+									"disabled": true
+								},
+								{
+									"key": "maxPrice",
+									"value": "1000",
+									"description": "Maximum price",
+									"disabled": true
+								},
+								{
+									"key": "inStock",
+									"value": "true",
+									"description": "Filter in stock items",
+									"disabled": true
+								},
+								{
+									"key": "featured",
+									"value": "true",
+									"description": "Filter featured items",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "shirt",
+									"description": "Search term",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Product",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Premium Cotton Shirt\",\n  \"price\": {\n    \"current\": 2999,\n    \"old\": 3999,\n    \"discountPercentage\": 25\n  },\n  \"category\": {\n    \"gender\": \"men\",\n    \"type\": [\"shirts\", \"casual\"],\n    \"colors\": [\n      {\n        \"colorName\": \"White\",\n        \"images\": [\n          \"https://example.com/white-shirt-1.jpg\",\n          \"https://example.com/white-shirt-2.jpg\"\n        ],\n        \"sizes\": [\n          {\n            \"name\": \"S\",\n            \"stock\": 15,\n            \"sku\": \"MS-WH-S\"\n          },\n          {\n            \"name\": \"M\",\n            \"stock\": 20,\n            \"sku\": \"MS-WH-M\"\n          },\n          {\n            \"name\": \"L\",\n            \"stock\": 18,\n            \"sku\": \"MS-WH-L\"\n          },\n          {\n            \"name\": \"XL\",\n            \"stock\": 12,\n            \"sku\": \"MS-WH-XL\"\n          }\n        ]\n      },\n      {\n        \"colorName\": \"Blue\",\n        \"images\": [\n          \"https://example.com/blue-shirt-1.jpg\",\n          \"https://example.com/blue-shirt-2.jpg\"\n        ],\n        \"sizes\": [\n          {\n            \"name\": \"S\",\n            \"stock\": 10,\n            \"sku\": \"MS-BL-S\"\n          },\n          {\n            \"name\": \"M\",\n            \"stock\": 15,\n            \"sku\": \"MS-BL-M\"\n          },\n          {\n            \"name\": \"L\",\n            \"stock\": 12,\n            \"sku\": \"MS-BL-L\"\n          },\n          {\n            \"name\": \"XL\",\n            \"stock\": 8,\n            \"sku\": \"MS-BL-XL\"\n          }\n        ]\n      }\n    ]\n  },\n  \"media\": {\n    \"thumbnail\": \"https://example.com/thumbnail.jpg\"\n  },\n  \"fabricImages\": [\n    \"https://example.com/fabric-1.jpg\",\n    \"https://example.com/blue-shirt-2.jpg\"\n  ],\n  \"isFeatured\": true,\n  \"isActive\": true,\n  \"tags\": [\"premium\", \"cotton\", \"casual\"]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Product (Restore Existing)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Premium Cotton Shirt\",\n  \"restore\": true,\n  \"price\": {\n    \"current\": 2999,\n    \"old\": 3999,\n    \"discountPercentage\": 25\n  },\n  \"category\": {\n    \"gender\": \"men\",\n    \"type\": [\"shirts\", \"casual\"],\n    \"colors\": [\n      {\n        \"colorName\": \"White\",\n        \"images\": [\n          \"https://example.com/white-shirt-1.jpg\",\n          \"https://example.com/white-shirt-2.jpg\"\n        ],\n        \"sizes\": [\n          {\n            \"name\": \"S\",\n            \"stock\": 15,\n            \"sku\": \"MS-WH-S\"\n          },\n          {\n            \"name\": \"M\",\n            \"stock\": 20,\n            \"sku\": \"MS-WH-M\"\n          },\n          {\n            \"name\": \"L\",\n            \"stock\": 18,\n            \"sku\": \"MS-WH-L\"\n          },\n          {\n            \"name\": \"XL\",\n            \"stock\": 12,\n            \"sku\": \"MS-WH-XL\"\n          }\n        ]\n      }\n    ]\n  },\n  \"media\": {\n    \"thumbnail\": \"https://example.com/thumbnail.jpg\"\n  },\n  \"fabricImages\": [\n    \"https://example.com/fabric-1.jpg\",\n    \"https://example.com/fabric-2.jpg\"\n  ],\n  \"isFeatured\": true,\n  \"isActive\": true,\n  \"tags\": [\"premium\", \"cotton\", \"casual\"]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/products/id/{{productId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"id",
+								"{{productId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product by Slug",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/products/slug/{{productSlug}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"slug",
+								"{{productSlug}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product by SKU",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/products/sku/{{productSku}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"sku",
+								"{{productSku}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Updated Premium Cotton Shirt\",\n  \"price\": {\n    \"current\": 3499,\n    \"old\": 3999,\n    \"discountPercentage\": 12\n  },\n  \"isFeatured\": false\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/products/{{productId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"{{productId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product (Soft Delete)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/products/{{productId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"{{productId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restore Soft Deleted Product",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/products/{{productId}}/restore",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"{{productId}}",
+								"restore"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Soft Deleted Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/products/deleted/all?page=1&limit=20",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"deleted",
+								"all"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product Stock",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"colorName\": \"White\",\n  \"sizeName\": \"M\",\n  \"quantity\": 25\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/products/{{productId}}/stock",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"{{productId}}",
+								"stock"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Featured Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/products/featured/all?limit=8",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"featured",
+								"all"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "8",
+									"description": "Number of featured products"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/products/search/{{searchQuery}}?page=1&limit=20",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"search",
+								"{{searchQuery}}"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product Analytics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/products/analytics/overview",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"analytics",
+								"overview"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bulk Stock Update",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"updates\": [\n    {\n      \"productId\": \"{{productId}}\",\n      \"colorName\": \"White\",\n      \"sizeName\": \"M\",\n      \"quantity\": 30\n    },\n    {\n      \"productId\": \"{{productId}}\",\n      \"colorName\": \"Blue\",\n      \"sizeName\": \"L\",\n      \"quantity\": 20\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/products/bulk/stock",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"bulk",
+								"stock"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Stock Management",
+			"item": [
+				{
+					"name": "Update Product Stock",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"colorName\": \"White\",\n  \"sizeName\": \"M\",\n  \"quantity\": 25\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/stock/{{productId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"stock",
+								"{{productId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Stock Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/stock/{{productId}}/info",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"stock",
+								"{{productId}}",
+								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check Variant Stock",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/stock/{{productId}}/check?colorName=White&sizeName=M",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"stock",
+								"{{productId}}",
+								"check"
+							],
+							"query": [
+								{
+									"key": "colorName",
+									"value": "White"
+								},
+								{
+									"key": "sizeName",
+									"value": "M"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bulk Stock Update",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"updates\": [\n    {\n      \"productId\": \"{{productId}}\",\n      \"colorName\": \"White\",\n      \"sizeName\": \"M\",\n      \"quantity\": 30\n    },\n    {\n      \"productId\": \"{{productId}}\",\n      \"colorName\": \"Blue\",\n      \"sizeName\": \"L\",\n      \"quantity\": 20\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/stock/bulk/update",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"stock",
+								"bulk",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Low Stock Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/stock/low-stock?limit=50",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"stock",
+								"low-stock"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "50"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Out of Stock Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/stock/out-of-stock?limit=50",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"stock",
+								"out-of-stock"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "50"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Stock Analytics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/stock/analytics/overview",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"stock",
+								"analytics",
+								"overview"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Recalculate All Stock",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/stock/recalculate-all",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"stock",
+								"recalculate-all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Stock History",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/stock/{{productId}}/history?days=30",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"stock",
+								"{{productId}}",
+								"history"
+							],
+							"query": [
+								{
+									"key": "days",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Stock Alerts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/stock/alerts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"stock",
+								"alerts"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:4000",
+			"type": "string"
+		},
+		{
+			"key": "productId",
+			"value": "YOUR_PRODUCT_ID_HERE",
+			"type": "string"
+		},
+		{
+			"key": "productSlug",
+			"value": "premium-cotton-shirt",
+			"type": "string"
+		},
+		{
+			"key": "productSku",
+			"value": "MS-WH-M",
+			"type": "string"
+		},
+		{
+			"key": "searchQuery",
+			"value": "shirt",
+			"type": "string"
+		}
+	]
+}
