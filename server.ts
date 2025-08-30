@@ -20,6 +20,21 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Database connection middleware
+app.use(async (req, res, next) => {
+    try {
+        await connectDB();
+        next();
+    } catch (error) {
+        console.error("Database connection failed:", error);
+        res.status(500).json({
+            success: false,
+            error: "Database connection failed",
+            message: "Unable to connect to database"
+        });
+    }
+});
+
 // Request logging middleware
 app.use((req, res, next) => {
     console.log(`${new Date().toISOString()} - ${req.method} ${req.path}`);
@@ -164,18 +179,20 @@ app.use("*", (req: express.Request, res: express.Response) => {
     });
 });
 
-// Connect to database and start server
-connectDB();
-const PORT = 4000;
+// For local development
+if (process.env.NODE_ENV !== "production") {
+    const PORT = process.env.PORT || 4000;
+    app.listen(PORT, () => {
+        console.log(`🚀 API server running on http://localhost:${PORT}`);
+        console.log(`📊 Health check: http://localhost:${PORT}/api/health`);
+        console.log(`📚 API Documentation: http://localhost:${PORT}/api`);
+        console.log(`🛍️ Products API: http://localhost:${PORT}/api/products (or /api/product)`);
+        console.log(`📦 Stock Management: http://localhost:${PORT}/api/stock`);
+        console.log(`🔐 Authentication: http://localhost:${PORT}/api/auth`);
+        console.log(`🛒 Shopping Bag: http://localhost:${PORT}/api/bag`);
+        console.log(`⭐ Reviews: http://localhost:${PORT}/api/reviews`);
+        console.log(`🆕 Arrival APIs: http://localhost:${PORT}/api/arrival`);
+    });
+}
 
-app.listen(PORT, () => {
-    console.log(`🚀 API server running on http://localhost:${PORT}`);
-    console.log(`📊 Health check: http://localhost:${PORT}/api/health`);
-    console.log(`📚 API Documentation: http://localhost:${PORT}/api`);
-    console.log(`🛍️ Products API: http://localhost:${PORT}/api/products (or /api/product)`);
-    console.log(`📦 Stock Management: http://localhost:${PORT}/api/stock`);
-    console.log(`🔐 Authentication: http://localhost:${PORT}/api/auth`);
-    console.log(`🛒 Shopping Bag: http://localhost:${PORT}/api/bag`);
-    console.log(`⭐ Reviews: http://localhost:${PORT}/api/reviews`);
-    console.log(`🆕 Arrival APIs: http://localhost:${PORT}/api/arrival`);
-});
+export default app;

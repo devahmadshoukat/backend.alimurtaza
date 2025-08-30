@@ -8,8 +8,21 @@
     ],
     "routes": [
         {
+            "src": "/api/(.*)",
+            "dest": "/server.ts"
+        },
+        {
             "src": "/(.*)",
             "dest": "/server.ts"
         }
-    ]
+    ],
+    "functions": {
+        "server.ts": {
+            "maxDuration": 30
+        }
+    },
+    "env": {
+        "NODE_ENV": "production",
+        "JWT_SECRET": "your-secret-key"
+    }
 }
